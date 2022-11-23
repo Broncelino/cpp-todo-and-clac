@@ -2,11 +2,7 @@
 //
 #include <string>
 #include <iostream>
-#include <list>
-#include <map>
 #include <deque>
-#include <fstream>
-
 
 using namespace std;
 void showdq(deque<string> g)
