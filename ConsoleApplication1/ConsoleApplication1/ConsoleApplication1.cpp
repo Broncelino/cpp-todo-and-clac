@@ -16,15 +16,7 @@ void showdq(deque<string> g)
         cout << *it <<"\n";
     cout << '\n';
 }
-void savedq(deque<string> g)
-{
-    deque<string>::iterator it;
-    ofstream o;
-    o.open("./text/file.txt");
-    for (it = g.begin(); it != g.end(); ++it)
-        o << *it << "\n";
-    o.close();
-}
+
 double vertVel() {
     double yvel;
     double time;
@@ -34,7 +26,7 @@ double vertVel() {
     cout << "Enter time since start in seconds : ";
     cin >> time;
     double curyvel = yvel - grav * time;
-
+    cout << curyvel << " meters per second \n";
     return curyvel;
 }
 
@@ -46,6 +38,7 @@ double horDist() {
     cout << "Enter time in air in seconds: ";
     cin >> time;
     double hordist = time * horvel;
+    cout << hordist << " meters\n";
     return hordist;
 }
 
@@ -58,6 +51,7 @@ double maxHeight() {
     cout << "Enter initial height in meters: ";
     cin >> inithi;
     double maxHeight = inithi + (vertvel * vertvel) / (grav * 2);
+    cout << maxHeight << " meters \n";
     return maxHeight;
 
 }
@@ -73,10 +67,9 @@ void toDoList() {
         cout << "3. Remove bottom task\n";
         cout << "4. clear all tasks\n";
         cout << "5. Print current list\n";
-        cout << "6. Save list to file\n";
-        cout << "7. Quit\n\n";
+        cout << "6. Quit\n\n";
         cin >> choice;
-        if (choice == 7) {
+        if (choice == 6) {
             break;
         }
         switch (choice) {
@@ -111,8 +104,6 @@ void toDoList() {
         case(5):
             showdq(todo);
             break;
-        case(6):
-            savedq(todo);
         default:
             cout << "Please enter valid option\n";
             
@@ -121,11 +112,50 @@ void toDoList() {
     }
 }
 
+void doEquations() {
+    while (true) {
+        int choice;
+        cout << "What do you want to do? \n 1. max Height of object thrown up given initial velocity \n 2. The distance traveled by an object given horizontal velocity and time in air \n 3. The vertical velicity of an object in the air after a given amount of time in the air \n 4. quit\n";
+        cin >> choice;
+        if (choice == 1) {
+            maxHeight();
+        }
+        else if (choice == 2) {
+            horDist();
+        }
+        else if (choice == 3) {
+            vertVel();
+        }
+        else if (choice == 4) {
+            break;
+        }
+        else {
+            cout << "Enter a valid option";
+        }
+    }
+}
+
 
 int main()
 {
-    toDoList();
-
+    while (true) {
+        int choice;
+        cout << "What do you want to do? \n 1. To do list \n 2. phsics calculations \n 3. stop\n";
+        cin >> choice;
+        if (choice == 1) {
+            toDoList();
+        }
+        else if (choice == 2) {
+            doEquations();
+        }
+        else if (choice == 3) {
+            break;
+        }
+        else {
+            break;
+        }
+    }
+    cout << "End of program";
   return 0;
 }
 
